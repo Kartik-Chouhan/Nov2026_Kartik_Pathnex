@@ -1,0 +1,16 @@
+Day01 practice to insatll nginx and check docker version
+
+-name: install nginx on pathnex server
+ hosts: all
+ become: yes
+
+ tasks:
+   -name: Install nginx
+    yum:
+    	name: nginx
+	state: present
+
+--Docker--
+
+docker --version
+docker run ubuntu echo "Hello Kartik!!"

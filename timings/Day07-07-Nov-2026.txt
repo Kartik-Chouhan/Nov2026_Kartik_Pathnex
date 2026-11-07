@@ -1,0 +1,5 @@
+3.5 hours -- done morning class
+45 min -- git practicing of merge conflict and PR raised to main
+45-59 min -- coding practice for Day07
+1 hour -- done aws revision and done practicing of creating S3 bucket and routing policies, IAM roles
+

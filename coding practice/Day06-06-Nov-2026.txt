@@ -1,0 +1,79 @@
+Day 06 - intro to CloudFormation and K8s advanced concepts
+
+--> Ansible - Install docker
+
+```yaml
+- name: install docker
+  hosts: all
+  become: yes
+  tasks:
+	- name: install docker
+	  yum:
+	  name: docker
+	  state: present
+	- name: start docker
+	  service:
+		name: docker
+		state: started
+		enabled: yes
+		
+--> Terraform - provisioning ec2 with VPC
+
+resource "aws_vpc" "main" {
+	cidr_block = "10.0.0.0/16"
+}
+
+resource "aws_instance" "kartik_ec2"{
+	ami = "ami_0abcd12134ABCD1234"
+	instance_type = "t3.medium"
+	subnet_id = aws_subnet.main.id
+	tags = {
+	   Name = "Kartik-EC2"
+	}
+}
+
+--> K8s - POD with volume mount
+
+apiVersion: v1
+kind: pod
+metadata:
+	name: day6-pod
+spec:
+  containers:
+	- name: web
+	  image: nginx
+	  volumeMounts:
+		- mountPath: /usr/share/nginx/pod
+		  name: pod-volume
+  volumes:
+	- name: html-volume
+	  hostPath:
+		path: /data
+		type: directory
+
+--> Shell script to check running services
+
+#!/bin/bash
+services=("nginx" "docker" "httpd")
+for services in "${services[@]}"
+do
+  if systemctl is-active --quiet $service; then
+	echo "$service is running"
+  else
+	echo "$service is not running"
+  fi
+done
+
+--> Docker
+
+# Node.js app (Javascript)
+console.log("Hell0.. It's Day06 code practice")  
+
+# Docker File
+FROM node:18
+WORKDIR /opt/kartik/node-app
+COPY app.js /opt/kartik/node-app/
+CMD ["node","/opt/kartik/node-app/app.js"]
+
+# Real Path
+/opt/kartik/node-app

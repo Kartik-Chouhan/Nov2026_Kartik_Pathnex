@@ -1,0 +1,4 @@
+1 hour -- practice of linux cmds
+15-20 min -- practice of hard link and soft link
+30 min -- done coding practice for Day03
+like this, today I learnt about more linux cmd for day to day use.

@@ -1,0 +1,3 @@
+3 hours -- Day-01 class done.. learnt about roadmap of DevOps
+1.5 hour -- also, learnt about IP add and DNS system.
+30 min -- done coding practice for nginx install and docker version check

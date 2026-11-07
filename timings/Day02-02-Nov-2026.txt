@@ -1,0 +1,5 @@
+3 hour -- linux class Day01
+1 hour --  practice of linux cmds 
+1 hour -- code practice from L2
+30 min - linux cmds mcq test via chatgpt
+1 hour -- EC2 to github video completed + Ec2 instance created and setup done

@@ -1,0 +1,104 @@
+Day 04 - basic CI/CD concepts with Jenkins and gitlab
+
+--> Jenkins - basic CI pipeline
+
+pipeline{
+	agent any
+	stages{
+		stage('Build'){
+			steps{
+				echo "Project is getting build.."
+			}
+		}
+		stage('Test'){
+			steps{
+				echo "Project is in testing phase... Test cases are running.."
+			}
+		}
+		stage('Deploy'){
+			steps{
+				echo "Deploying the application..."
+			}
+		}
+	}
+}
+
+--> Gitlab CI/CD -- basic pipeline
+
+stages:
+	- build
+	- test
+	- deploy
+	
+build:
+	stage: build
+	script:
+	  - echo "Building project.."
+	  
+test:
+	stage: test
+	script:
+	  - echo "Testing the cases"
+	  
+deploy:
+	stage: deploy
+	script:
+	  - echo "Deploying the application"
+	  
+--> Ansible -- install and configure the nginx
+
+- name: install and configure Nginx
+  hosts: all
+  become: yes
+  tasks:
+	- name: Install nginx
+	  yum: 
+	    name: Nginx
+	    state: present
+	
+	- name: Configure nginx
+	  template:
+		src: nginx.conf.j3
+		dest: /etc/nginx/nginx.conf
+	
+	- name: Start nginx service
+	  service:
+		name: nginx
+		state: present
+		enabled: yes
+		
+--> Terraform - EC2 with security group
+ 
+resource "aws_security_group" "example"{
+	name = "demo_security_group"
+	description = "Allow SSH and HTTP"
+	ingress{
+		from_port = 22
+		to_port = 22
+		protocol = "tcp"
+		cidr_blocks = ["0.0.0.0/0"]
+	}
+	ingress{
+		from_port = 80
+		to_port = 80 
+		protocol = "tcp"
+		cidr_blocks = ["0.0.0.0/0"]
+	}
+	egress{
+		from_port = 0
+		to_port = 0
+		protocol = "-1"
+		cidr_blocks = ["0.0.0.0/0"]
+	}
+}
+
+--> Docker -- 
+
+#Apache container
+FROM ubuntu:22.04
+RUN apt update && apt install apache2 -y
+RUN rcho "Hello Kartik..." > /var/www/message.html
+CMD ["apachectl", "-D", "Foreground"]
+
+# Bash Real Path
+/var/www/message
